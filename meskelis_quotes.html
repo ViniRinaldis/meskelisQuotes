@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <script>
+      var url = "https://api.github.com/gists/39ab92b5d1a471f7fa8063e84bfcde0d";
+      var content;
+      var array_content;
+      
+      function get_data(){
+        fetch(url).then(response => response.json()).then(data => data.files).then(files => files.Teste).then(function(teste){
+          content = teste.content;
+          array_content = content.split(';')});
+
+      }
+      get_data();
+
+      function get_random_quote(){
+        if(array_content.length){
+          var number = (Math.random() * (array_content.length - 1)).toFixed();
+          return array_content[number]; 
+        }
+      
+      }
+      function update_quote(){
+        document.getElementById("quote").innerHTML = get_random_quote(); 
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Meskelis quotes!</h1>
+    <div>
+      <p id="quote">teste</p>
+    </div>
+    <button onClick="update_quote();">Gerar</button>
+  </body>
+</html>
