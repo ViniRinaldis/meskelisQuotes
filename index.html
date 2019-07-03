@@ -4,7 +4,7 @@
       var url = "https://api.github.com/gists/39ab92b5d1a471f7fa8063e84bfcde0d";
       var content;
       var array_content;
-      
+
       function get_data(){
         fetch(url).then(response => response.json()).then(data => data.files).then(files => files.Teste).then(function(teste){
           content = teste.content;
@@ -16,20 +16,76 @@
       function get_random_quote(){
         if(array_content.length){
           var number = (Math.random() * (array_content.length - 1)).toFixed();
-          return array_content[number]; 
+          return array_content[number];
         }
-      
+
       }
       function update_quote(){
-        document.getElementById("quote").innerHTML = get_random_quote(); 
+        document.getElementById("quote").innerHTML = get_random_quote();
       }
     </script>
+    <style media="all">
+    @import url('https://fonts.googleapis.com/css?family=Taviraj&display=swap');
+      * {
+        box-sizing: border-box;
+      }
+      html, body {
+        font: 1.5em/1.5 'Taviraj', Georgia, sans-serif;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        min-height: 100%;
+      }
+      .content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+      }
+      .content-item {
+        max-width: 50%;
+      }
+      .quote-content {
+        position: relative;
+        text-align: center;
+      }
+      .quote-text::before{
+        font-family: Georgia;
+        content: ' " ';
+        font-size: 150px;
+        position: absolute;
+        top: -80px;
+        left: -80px;
+        z-index: 0;
+      }
+      .meskelis-title {
+        font-size: 1em;
+        position: absolute;
+      }
+      .quote-author {
+        padding: 20px 0;
+      }
+      .quote-author {
+        font-size: 0.5em;
+      }
+      .quote-author::before {
+        content: " — ";
+      }
+    </style>
   </head>
   <body>
-    <h1>Meskelis quotes!</h1>
-    <div>
-      <p id="quote">teste</p>
+    <h1 class="meskelis-title">
+      Meskelis quotes!
+    </h1>
+    <div class="content">
+      <div class="content-item quote-content">
+        <div class="quote-text" id="quote"></div>
+        <div class="quote-author">Arthur Meskelis</div>
+      </div>
+      <button class="content-item" onClick="update_quote();">
+        Gerar nova Meskelis quote
+      </button>
     </div>
-    <button onClick="update_quote();">Gerar</button>
   </body>
 </html>
