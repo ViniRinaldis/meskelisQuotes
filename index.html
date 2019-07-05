@@ -12,7 +12,9 @@
       function get_data(){
         fetch(url).then(response => response.json()).then(data => data.files).then(files => files.Teste).then(function(teste){
           content = teste.content;
-          array_content = content.split(';')});
+          array_content = content.split(';');
+          update_quote();
+        });
 
       }
       get_data();
